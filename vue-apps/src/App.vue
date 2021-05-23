@@ -62,10 +62,12 @@ export default {
       this.todos = this.todos.filter((todo) => todo.id !== todoId);
     },
     addCount(currCount) {
-      this.count = (currCount += 1);
+      this.count = currCount += 1;
     },
     downCount(currCount) {
-      this.count = (currCount -= 1);
+      if (currCount !== 0) {
+        this.count = currCount -= 1;
+      }
     },
   },
 };

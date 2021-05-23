@@ -1,7 +1,12 @@
 <template>
   <div>
     <h2>Counter</h2>
-    {{ count }}
+    <p
+      class="number"
+      v-bind:style="[count === 0 ? 'color: green' : 'color: black']"
+    >
+      {{ count }}
+    </p>
   </div>
   <div>
     <button @click="$emit('add-count', count)">Up</button>
@@ -17,7 +22,7 @@ export default {
 </script>
 
 <style scoped>
-button {
-  margin-top: 20px;
+p {
+    font-size: 30px;
 }
 </style>
