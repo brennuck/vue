@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 export default {
   name: "AddTodo",
@@ -18,10 +18,12 @@ export default {
     };
   },
   methods: {
-    addTodo(e) { // This will be called everytime the form is submitted
+    addTodo(e) {
+      // This will be called everytime the form is submitted
       e.preventDefault();
 
-      const newTodoObj = { // new object
+      const newTodoObj = {
+        // new object
         id: uuidv4(),
         title: this.title,
         completed: false,

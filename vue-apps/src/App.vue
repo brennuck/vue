@@ -2,18 +2,25 @@
   <div id="app">
     <Todos v-bind:todos="todos" v-on:delete-todo="deleteTodo" />
     <AddTodo v-on:add-todo="addTodo" />
+    <Counter
+      v-bind:count="count"
+      v-on:add-count="addCount"
+      v-on:down-count="downCount"
+    />
   </div>
 </template>
 
 <script>
 import Todos from "./components/Todos";
 import AddTodo from "./components/AddTodo";
+import Counter from "./components/Counter";
 
 export default {
   name: "app",
   components: {
     Todos,
     AddTodo,
+    Counter,
   },
   data() {
     return {
@@ -44,6 +51,7 @@ export default {
           completed: false,
         },
       ],
+      count: 0,
     };
   },
   methods: {
@@ -52,6 +60,12 @@ export default {
     },
     deleteTodo(todoId) {
       this.todos = this.todos.filter((todo) => todo.id !== todoId);
+    },
+    addCount(currCount) {
+      this.count = (currCount += 1);
+    },
+    downCount(currCount) {
+      this.count = (currCount -= 1);
     },
   },
 };
