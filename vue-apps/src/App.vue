@@ -7,13 +7,17 @@
       v-on:add-count="addCount"
       v-on:down-count="downCount"
     />
+    <Temp v-bind:info="info" />
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 import Todos from "./components/Todos";
 import AddTodo from "./components/AddTodo";
 import Counter from "./components/Counter";
+import Temp from "./components/Temp";
 
 export default {
   name: "app",
@@ -21,6 +25,7 @@ export default {
     Todos,
     AddTodo,
     Counter,
+    Temp,
   },
   data() {
     return {
@@ -52,6 +57,7 @@ export default {
         },
       ],
       count: 0,
+      info: null,
     };
   },
   methods: {
@@ -69,6 +75,26 @@ export default {
         this.count = currCount -= 1;
       }
     },
+  },
+  mounted() {
+    const options = {
+      method: "GET",
+      url: "https://weatherbit-v1-mashape.p.rapidapi.com/current",
+      params: { lon: "-111.876183", lat: "40.758701" },
+      headers: {
+        "x-rapidapi-key": "3acd025854mshb88d4616eac0063p19e3a5jsn722c3bcc8795",
+        "x-rapidapi-host": "weatherbit-v1-mashape.p.rapidapi.com",
+      },
+    };
+
+    axios
+      .request(options)
+      .then((response) => {
+        this.info = response.data.data[0].temp;
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
   },
 };
 </script>
