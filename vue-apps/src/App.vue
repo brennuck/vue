@@ -13,11 +13,14 @@
 
 <script>
 import axios from "axios";
+import dotenv from 'dotenv'
 
 import Todos from "./components/Todos";
 import AddTodo from "./components/AddTodo";
 import Counter from "./components/Counter";
 import Temp from "./components/Temp";
+
+dotenv.config()
 
 export default {
   name: "app",
@@ -82,7 +85,7 @@ export default {
       url: "https://weatherbit-v1-mashape.p.rapidapi.com/current",
       params: { lon: "-111.876183", lat: "40.758701" },
       headers: {
-        "x-rapidapi-key": "3acd025854mshb88d4616eac0063p19e3a5jsn722c3bcc8795",
+        "x-rapidapi-key": process.env.VUE_APP_X_RAPIDAPI_KEY,
         "x-rapidapi-host": "weatherbit-v1-mashape.p.rapidapi.com",
       },
     };
